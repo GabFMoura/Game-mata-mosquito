@@ -1,12 +1,23 @@
-let altura
-let largura
-let vidas = 1
-let tempo = 30
+let altura;
+let largura;
+let vidas = 1;
+let tempo = 30;
+let timerCriaMosquito = 1500
+let nivel = window.location.search;
+nivel = nivel.replace('?', '');
+
+if(nivel === 'normal') {
+  timerCriaMosquito = 1500
+} else if (nivel === 'dificil') {
+  timerCriaMosquito = 1000
+} else if(nivel === 'impossivel') {
+  timerCriaMosquito = 750
+}
 
 function ajustaTamanhoJogo() {
 altura =  window.innerHeight;
 largura = window.innerWidth;
-}
+};
 
 let cronometro = setInterval(function() {
   tempo -= 1
@@ -17,7 +28,7 @@ let cronometro = setInterval(function() {
   } else {
   document.getElementById('cronometro').innerHTML = tempo
   }
-}, 1000) 
+}, 1000) ;
 
 ajustaTamanhoJogo()
 
@@ -56,7 +67,7 @@ ajustaTamanhoJogo()
 posicaoRandomica()
 let criaMosquito = setInterval(function () {
   posicaoRandomica()
-}, 2000)
+}, timerCriaMosquito)
  
 function tamanhoAleatorio() {
   let classe = Math.floor(Math.random() * 3)
@@ -80,3 +91,13 @@ function ladoAleatorio() {
     return 'ladoB'
   }
 }
+
+/*function iniciarJogo() {
+  let nivel = document.getElementById('nivel').value
+
+  if (nivel === '') {
+    alert('Selecione a dificuldade do jogo')
+    return false
+  }
+  window.location.href = "app.html"
+}*/ 
